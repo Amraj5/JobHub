@@ -1,0 +1,147 @@
+/* ============================================
+   JobHub — Custom Brand Styles
+   Loaded after Bootstrap. Overrides defaults.
+   ============================================ */
+
+:root {
+    /* Primary brand colour — deep royal blue */
+    --bs-primary: #1e40af;
+    --bs-primary-rgb: 30, 64, 175;
+
+    /* Darker shade for hover/pressed states */
+    --jh-primary-dark: #1e3a8a;
+    --jh-primary-dark-rgb: 30, 58, 138;
+
+    /* Light tint for backgrounds */
+    --jh-primary-light: #dbeafe;
+
+    /* Accent — bright sky blue */
+    --jh-accent: #0ea5e9;
+
+    /* Neutrals */
+    --jh-dark: #0f172a;
+    --jh-body-bg: #f8fafc;
+    --jh-muted: #64748b;
+
+    /* Link colour */
+    --bs-link-color: #1e40af;
+    --bs-link-hover-color: #1e3a8a;
+    --bs-link-color-rgb: 30, 64, 175;
+    --bs-link-hover-color-rgb: 30, 58, 138;
+}
+
+/* ---- Page base ---- */
+body {
+    background-color: var(--jh-body-bg);
+    color: var(--jh-dark);
+}
+
+/* ---- Buttons: primary ---- */
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: var(--jh-primary-dark) !important;
+    border-color: var(--jh-primary-dark) !important;
+}
+
+.btn-outline-primary {
+    color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    color: #fff;
+}
+
+/* ---- Navbar: dark slate, not pure black ---- */
+.navbar.bg-dark {
+    background-color: var(--jh-dark) !important;
+}
+
+.navbar .nav-link.active {
+    color: #fff !important;
+    font-weight: 600;
+}
+
+/* ---- Cards: subtle shadow, rounded ---- */
+.card {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: 0 8px 20px rgba(30, 64, 175, 0.08);
+}
+
+/* ---- Status badge: INTERVIEW (purple) ---- */
+.bg-purple {
+    background-color: #7c3aed !important;
+    color: #fff;
+}
+
+/* ---- Hero section (homepage) ---- */
+.hero {
+    background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+    color: #fff;
+    padding: 4rem 0;
+    border-radius: 0 0 1rem 1rem;
+}
+
+.hero h1 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.hero .lead {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* ---- Footer ---- */
+footer.bg-dark {
+    background-color: var(--jh-dark) !important;
+}
+
+/* ---- Focus ring uses accent ---- */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--jh-accent);
+    box-shadow: 0 0 0 0.2rem rgba(14, 165, 233, 0.25);
+}
+
+/* ---- Category cards (homepage) ---- */
+.category-card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+}
+
+.category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(30, 64, 175, 0.12);
+}
+
+/* ---- Utility: brand text colour ---- */
+.text-brand {
+    color: var(--bs-primary) !important;
+}
+
+.bg-brand-light {
+    background-color: var(--jh-primary-light) !important;
+}
+.hero .btn-outline-light {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.hero .btn-outline-light:hover {
+    background-color: #fff;
+    color: var(--bs-primary);
+}

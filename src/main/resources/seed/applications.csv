@@ -1,0 +1,31 @@
+seekerEmail,jobTitle,companyName,cvUrl,coverLetter,status
+john.doe@gmail.com,Senior Java Developer,TechCorp Ltd,/uploads/cvs/john-doe-cv.pdf,I am excited to apply for this role as my experience aligns perfectly,PENDING
+john.doe@gmail.com,Frontend Engineer,TechCorp Ltd,/uploads/cvs/john-doe-cv.pdf,Looking to expand my frontend skills,REVIEWING
+john.doe@gmail.com,Machine Learning Engineer,NeuroTech Solutions,/uploads/cvs/john-doe-cv.pdf,I have strong ML fundamentals,REJECTED
+john.doe@gmail.com,Backend Developer,NeuroTech Solutions,/uploads/cvs/john-doe-cv.pdf,Excited about AI driven backends,ACCEPTED
+john.doe@gmail.com,Product Manager,TechCorp Ltd,/uploads/cvs/john-doe-cv.pdf,Interested in a product side role,SHORTLISTED
+fatima.ibrahim@outlook.com,Data Analyst,FinBank,/uploads/cvs/fatima-ibrahim-cv.pdf,I have been following FinBank growth closely,SHORTLISTED
+fatima.ibrahim@outlook.com,Digital Marketing Analyst,BrightWave Marketing,/uploads/cvs/fatima-ibrahim-cv.pdf,My analytical skills transfer well,PENDING
+fatima.ibrahim@outlook.com,Risk Officer,FinBank,/uploads/cvs/fatima-ibrahim-cv.pdf,Deep understanding of risk frameworks,REVIEWING
+fatima.ibrahim@outlook.com,Financial Controller,FinBank,/uploads/cvs/fatima-ibrahim-cv.pdf,Ready for a leadership finance role,PENDING
+emeka.nwosu@yahoo.com,DevOps Engineer,TechCorp Ltd,/uploads/cvs/emeka-nwosu-cv.pdf,Strong Kubernetes and CICD experience,INTERVIEW
+emeka.nwosu@yahoo.com,Backend Developer,NeuroTech Solutions,/uploads/cvs/emeka-nwosu-cv.pdf,Excited about AI driven infrastructure,PENDING
+emeka.nwosu@yahoo.com,Platform Engineer,EduBridge Academy,/uploads/cvs/emeka-nwosu-cv.pdf,Ready to scale edtech platforms,PENDING
+emeka.nwosu@yahoo.com,DevOps Engineer,FinBank,/uploads/cvs/emeka-nwosu-cv.pdf,Keen to bring cloud expertise to banking,REVIEWING
+aisha.bello@gmail.com,Registered Nurse,HealthPlus Medical,/uploads/cvs/aisha-bello-cv.pdf,Passionate about patient care,ACCEPTED
+aisha.bello@gmail.com,Patient Coordinator,HealthPlus Medical,/uploads/cvs/aisha-bello-cv.pdf,Strong organizational skills,PENDING
+aisha.bello@gmail.com,Health Informatics Specialist,HealthPlus Medical,/uploads/cvs/aisha-bello-cv.pdf,Combining clinical and IT skills,SHORTLISTED
+aisha.bello@gmail.com,Medical Officer,HealthPlus Medical,/uploads/cvs/aisha-bello-cv.pdf,Ready to advance my medical career,REJECTED
+david.chen@gmail.com,Machine Learning Engineer,NeuroTech Solutions,/uploads/cvs/david-chen-cv.pdf,PhD level ML experience in medical imaging,INTERVIEW
+david.chen@gmail.com,Data Scientist,NeuroTech Solutions,/uploads/cvs/david-chen-cv.pdf,Ready to drive data driven insights,REVIEWING
+david.chen@gmail.com,Research Scientist,NeuroTech Solutions,/uploads/cvs/david-chen-cv.pdf,Long track record in AI research,ACCEPTED
+david.chen@gmail.com,Senior Java Developer,TechCorp Ltd,/uploads/cvs/david-chen-cv.pdf,Interested in transitioning to full stack,PENDING
+priya.sharma@outlook.com,SEO Specialist,BrightWave Marketing,/uploads/cvs/priya-sharma-cv.pdf,Strong SEO track record,PENDING
+priya.sharma@outlook.com,Content Strategist,BrightWave Marketing,/uploads/cvs/priya-sharma-cv.pdf,Content strategy is my passion,SHORTLISTED
+priya.sharma@outlook.com,Social Media Manager,BrightWave Marketing,/uploads/cvs/priya-sharma-cv.pdf,Grown multiple brands through social,REVIEWING
+priya.sharma@outlook.com,Marketing Specialist,EduBridge Academy,/uploads/cvs/priya-sharma-cv.pdf,Ready to drive edtech growth,REJECTED
+priya.sharma@outlook.com,Brand Designer,BrightWave Marketing,/uploads/cvs/priya-sharma-cv.pdf,Creative background in visual design,REVIEWING
+seun.adebayo@gmail.com,Structural Engineer,BuildRight Engineering,/uploads/cvs/seun-adebayo-cv.pdf,Ready for large scale projects,INTERVIEW
+seun.adebayo@gmail.com,Project Manager,BuildRight Engineering,/uploads/cvs/seun-adebayo-cv.pdf,Leadership in complex projects,SHORTLISTED
+seun.adebayo@gmail.com,Quantity Surveyor,BuildRight Engineering,/uploads/cvs/seun-adebayo-cv.pdf,Strong analytical and cost skills,PENDING
+seun.adebayo@gmail.com,Site Supervisor,BuildRight Engineering,/uploads/cvs/seun-adebayo-cv.pdf,Hands on site experience,ACCEPTED

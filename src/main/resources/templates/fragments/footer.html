@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<footer th:fragment="footer" class="bg-dark text-white-50 mt-5 py-4">
+    <div class="container text-center">
+        <p class="mb-1">&copy; 2025 JobHub. All rights reserved.</p>
+        <p class="mb-0 small">
+            <a th:href="@{/about}" class="text-white-50 text-decoration-none me-3">About</a>
+            <a th:href="@{/contact}" class="text-white-50 text-decoration-none me-3">Contact</a>
+            <a th:href="@{/privacy}" class="text-white-50 text-decoration-none">Privacy</a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

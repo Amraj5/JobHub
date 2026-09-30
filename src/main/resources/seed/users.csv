@@ -1,0 +1,16 @@
+email,username,password,fullName,phone,role,active
+admin@jobhub.com,admin,password123,System Administrator,+2348000000000,ADMIN,true
+john.doe@gmail.com,johndoe,password123,John Doe,+2348012345678,JOB_SEEKER,true
+fatima.ibrahim@outlook.com,fatimaib,password123,Fatima Ibrahim,+2348023456789,JOB_SEEKER,true
+emeka.nwosu@yahoo.com,emekanw,password123,Emeka Nwosu,+2348034567890,JOB_SEEKER,true
+aisha.bello@gmail.com,aishab,password123,Aisha Bello,+2348045678901,JOB_SEEKER,true
+david.chen@gmail.com,davidchen,password123,David Chen,+14155551234,JOB_SEEKER,true
+priya.sharma@outlook.com,priyasharma,password123,Priya Sharma,+919876543210,JOB_SEEKER,true
+seun.adebayo@gmail.com,seunade,password123,Oluwaseun Adebayo,+2348056789012,JOB_SEEKER,true
+ada.okafor@techcorp.ng,adaokafor,password123,Ada Okafor,+2348067890123,EMPLOYER,true
+grace.eze@finbank.ng,graceeze,password123,Grace Eze,+2348078901234,EMPLOYER,true
+tunde.adeyemi@healthplus.ng,drtunde,password123,Dr Tunde Adeyemi,+2348089012345,EMPLOYER,true
+james.mwangi@edubridge.africa,jamesmw,password123,James Mwangi,+254712345678,EMPLOYER,true
+chinedu.okafor@buildright.ng,chineduok,password123,Chinedu Okafor,+2348090123456,EMPLOYER,true
+sarah.williams@brightwave.co.uk,sarahw,password123,Sarah Williams,+447700900123,EMPLOYER,true
+klaus.mueller@neurotech.de,klausm,password123,Klaus Mueller,+4915112345678,EMPLOYER,true

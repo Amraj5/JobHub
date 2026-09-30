@@ -1,0 +1,8 @@
+email,title,bio,location,yearsOfExperience,cvUrl,profilePictureUrl
+john.doe@gmail.com,Full-Stack Java Developer,Passionate about building scalable backend systems and clean APIs,Lagos Nigeria,5,/uploads/cvs/john-doe-cv.pdf,/uploads/avatars/john-doe.png
+fatima.ibrahim@outlook.com,Data Analyst,Experienced data analyst with a focus on banking and fintech insights,Abuja Nigeria,4,/uploads/cvs/fatima-ibrahim-cv.pdf,/uploads/avatars/fatima-ibrahim.png
+emeka.nwosu@yahoo.com,DevOps Engineer,Infrastructure automation specialist with cloud and Kubernetes expertise,Lagos Nigeria,6,/uploads/cvs/emeka-nwosu-cv.pdf,/uploads/avatars/emeka-nwosu.png
+aisha.bello@gmail.com,Registered Nurse,Dedicated nurse with experience in critical care and patient management,Lagos Nigeria,3,/uploads/cvs/aisha-bello-cv.pdf,/uploads/avatars/aisha-bello.png
+david.chen@gmail.com,Machine Learning Engineer,ML engineer with a focus on computer vision and healthcare applications,San Francisco United States,7,/uploads/cvs/david-chen-cv.pdf,/uploads/avatars/david-chen.png
+priya.sharma@outlook.com,Digital Marketing Specialist,Marketing professional with expertise in SEO and content strategy,Mumbai India,4,/uploads/cvs/priya-sharma-cv.pdf,/uploads/avatars/priya-sharma.png
+seun.adebayo@gmail.com,Structural Engineer,Civil engineer with experience in large infrastructure projects,Port Harcourt Nigeria,5,/uploads/cvs/seun-adebayo-cv.pdf,/uploads/avatars/seun-adebayo.png
