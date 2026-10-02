@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Browse Jobs - JobHub')}"></head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar('jobs')}"></div>
+
+<main>
+    <section class="py-4 bg-light border-bottom">
+        <div class="container">
+            <h1 class="mb-3">Available Jobs</h1>
+
+            <form method="get" th:action="@{/jobs}" class="row g-2">
+                <div class="col-md-3">
+                    <input type="text" name="keyword" th:value="${criteria.keyword}"
+                           class="form-control" placeholder="Keyword">
+                </div>
+                <div class="col-md-3">
+                    <input type="text" name="location" th:value="${criteria.location}"
+                           class="form-control" placeholder="Location">
+                </div>
+                <div class="col-md-2">
+                    <select name="category" class="form-select">
+                        <option value="">All Categories</option>
+                        <option th:each="c : ${categories}" th:value="${c}"
+                                th:text="${c}" th:selected="${criteria.category == c}"></option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select name="type" class="form-select">
+                        <option value="">All Types</option>
+                        <option th:each="t : ${types}" th:value="${t}"
+                                th:text="${t}" th:selected="${criteria.employmentType == t}"></option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">Search</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="py-4">
+        <div class="container">
+            <div class="d-flex justify-content-between mb-3">
+                <p class="text-muted mb-0">
+                    <span th:text="${jobsPage.totalElements}">0</span> jobs found
+                </p>
+            </div>
+
+            <div th:if="${jobsPage.empty}" class="alert alert-info text-center py-4">
+                No jobs match your search. Try different filters.
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-4" th:each="job : ${jobsPage.content}">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${job.title}">Job Title</h5>
+                            <p class="text-muted mb-2">
+                                <i class="bi bi-building me-1"></i>
+                                <span th:text="${job.company.name}">Company</span>
+                            </p>
+                            <p class="text-muted mb-2">
+                                <i class="bi bi-geo-alt me-1"></i>
+                                <span th:text="${job.location}">Location</span>
+                            </p>
+                            <div class="mb-2">
+                                <span class="badge bg-primary" th:text="${job.employmentType}">Type</span>
+                                <span class="badge bg-secondary" th:text="${job.experienceLevel}">Level</span>
+                            </div>
+                            <p class="fw-bold text-success mb-0" th:if="${job.salaryMin != null}">
+                                <span th:text="${job.currency}">NGN</span>
+                                <span th:text="${#numbers.formatInteger(job.salaryMin, 3, 'COMMA')}">0</span>
+                                <span th:if="${job.salaryMax != null}"> - </span>
+                                <span th:if="${job.salaryMax != null}"
+                                      th:text="${#numbers.formatInteger(job.salaryMax, 3, 'COMMA')}">0</span>
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0">
+                            <a th:href="@{/jobs/{id}(id=${job.id})}" class="btn btn-outline-primary w-100">
+                                View Job
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <nav th:if="${jobsPage.totalPages > 1}" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${jobsPage.first} ? 'disabled'">
+                        <a class="page-link"
+                           th:href="@{/jobs(page=${jobsPage.number - 1},
+                                            keyword=${criteria.keyword},
+                                            location=${criteria.location},
+                                            category=${criteria.category},
+                                            type=${criteria.employmentType},
+                                            level=${criteria.experienceLevel})}">
+                            Previous
+                        </a>
+                    </li>
+                    <li class="page-item disabled">
+                        <span class="page-link">
+                            Page <span th:text="${jobsPage.number + 1}">1</span>
+                            of <span th:text="${jobsPage.totalPages}">1</span>
+                        </span>
+                    </li>
+                    <li class="page-item" th:classappend="${jobsPage.last} ? 'disabled'">
+                        <a class="page-link"
+                           th:href="@{/jobs(page=${jobsPage.number + 1},
+                                            keyword=${criteria.keyword},
+                                            location=${criteria.location},
+                                            category=${criteria.category},
+                                            type=${criteria.employmentType},
+                                            level=${criteria.experienceLevel})}">
+                            Next
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

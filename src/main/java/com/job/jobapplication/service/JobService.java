@@ -16,6 +16,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.job.jobapplication.repository.ApplicationRepository;
+import com.job.jobapplication.repository.InterviewRepository;
 
 import java.util.List;
 /**
@@ -27,30 +29,53 @@ import java.util.List;
 public class JobService {
     private final JobRepository jobRepository;
     private final CompanyRepository companyRepository;
+    private final ApplicationRepository applicationRepository;
+    private final InterviewRepository interviewRepository;
 
-    public JobService(JobRepository jobRepository, CompanyRepository companyRepository) {
+    public JobService(JobRepository jobRepository,
+                      CompanyRepository companyRepository,
+                      ApplicationRepository applicationRepository,
+                      InterviewRepository interviewRepository) {
         this.jobRepository = jobRepository;
         this.companyRepository = companyRepository;
+        this.applicationRepository = applicationRepository;
+        this.interviewRepository = interviewRepository;
     }
     
     public Page<Job> searchActiveJobs(JobSearchCriteria criteria, int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
 
-        boolean noKeyword = isBlank(criteria.getKeyword());
-        boolean noLocation = isBlank(criteria.getLocation());
-        boolean noCategory = criteria.getCategory() == null;
-        boolean noType = criteria.getEmploymentType() == null;
-        boolean noLevel = criteria.getExperienceLevel() == null;
-        
-        if (noKeyword && noLocation && noCategory && noType && noLevel) {
-            return jobRepository.findByStatus(JobStatus.ACTIVE, pageable);
-        }
+        String keyword = isBlank(criteria.getKeyword()) ? null : criteria.getKeyword().trim();
+        String location = isBlank(criteria.getLocation()) ? null : criteria.getLocation().trim();
 
-        return jobRepository.findByStatus(JobStatus.ACTIVE, pageable);
+        return jobRepository.searchJobs(
+                JobStatus.ACTIVE,
+                keyword,
+                location,
+                criteria.getCategory(),
+                criteria.getEmploymentType(),
+                criteria.getExperienceLevel(),
+                pageable
+        );
+    }
+    public List<Job> findAll() {
+        return jobRepository.findAllWithCompany();
+    }
+
+    @Transactional
+    public void forceDeleteJob(Long jobId) {
+        Job job = findById(jobId);
+        interviewRepository.deleteByJobId(jobId);
+        applicationRepository.deleteByJobId(jobId);
+        jobRepository.delete(job);
+    }
+
+    public long countByStatus(JobStatus status) {
+        return jobRepository.countByStatus(status);
     }
 
     public Job findById(Long id) {
-        return jobRepository.findById(id)
+        return jobRepository.findByIdWithCompany(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Job not found: " + id));
     }
 
@@ -96,7 +121,7 @@ public class JobService {
         assertOwnership(job, employer);
         jobRepository.delete(job);
     }
-
+    
 
     private void applyFormToJob(JobForm form, Job job) {
         job.setTitle(form.getTitle().trim());

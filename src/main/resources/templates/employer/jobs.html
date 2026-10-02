@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('My Jobs - JobHub')}"></head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar('employer')}"></div>
+
+<main class="container my-5">
+
+    <div th:replace="~{fragments/messages :: messages}"></div>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">My Jobs</h1>
+        <a th:href="@{/employer/jobs/new}" class="btn btn-primary">
+            <i class="bi bi-plus-circle me-1"></i> Post a Job
+        </a>
+    </div>
+
+    <div th:if="${company == null}" class="alert alert-warning">
+        Create a <a th:href="@{/employer/company}">company profile</a> first.
+    </div>
+
+    <div th:if="${company != null and jobs.isEmpty()}" class="alert alert-info">
+        You haven't posted any jobs yet.
+    </div>
+
+    <div class="card" th:if="${company != null and !jobs.isEmpty()}">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Posted</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="job : ${jobs}">
+                    <td class="fw-semibold" th:text="${job.title}">Title</td>
+                    <td th:text="${job.employmentType}">Type</td>
+                    <td><span class="badge bg-success" th:text="${job.status}">ACTIVE</span></td>
+                    <td th:text="${#temporals.format(job.createdAt, 'MMM d, yyyy')}">Date</td>
+                    <td class="text-end">
+                        <a th:href="@{/employer/jobs/{id}/applicants(id=${job.id})}"
+                           class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-people"></i> Applicants
+                        </a>
+                        <a th:href="@{/employer/jobs/{id}/edit(id=${job.id})}"
+                           class="btn btn-sm btn-outline-secondary">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <form th:action="@{/employer/jobs/{id}/delete(id=${job.id})}"
+                              method="post" class="d-inline"
+                              onsubmit="return confirm('Delete this job?');">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

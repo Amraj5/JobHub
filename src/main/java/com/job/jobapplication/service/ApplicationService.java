@@ -1,29 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.job.jobapplication.service;
+
 import com.job.jobapplication.dto.ApplicationForm;
 import com.job.jobapplication.exception.BusinessRuleException;
 import com.job.jobapplication.exception.ResourceNotFoundException;
 import com.job.jobapplication.exception.UnauthorizedActionException;
-import com.job.jobapplication.model.*;
+import com.job.jobapplication.model.Application;
+import com.job.jobapplication.model.ApplicationStatus;
+import com.job.jobapplication.model.Job;
+import com.job.jobapplication.model.JobSeekerProfile;
+import com.job.jobapplication.model.JobStatus;
+import com.job.jobapplication.model.User;
 import com.job.jobapplication.repository.ApplicationRepository;
 import com.job.jobapplication.repository.JobRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-/**
- *
- * @author ADAMS
- */
+
 @Service
 @Transactional(readOnly = true)
 public class ApplicationService {
+
     private final ApplicationRepository applicationRepository;
     private final JobRepository jobRepository;
     private final JobSeekerProfileService profileService;
+  
 
     public ApplicationService(ApplicationRepository applicationRepository,
                               JobRepository jobRepository,
@@ -33,9 +35,7 @@ public class ApplicationService {
         this.profileService = profileService;
     }
 
-    /**
-     * Seeker applies to a job. Enforces business rules.
-     */
+    // ============ SEEKER: APPLY ============
     @Transactional
     public Application apply(Long jobId, ApplicationForm form, User seeker) {
         Job job = jobRepository.findById(jobId)
@@ -62,45 +62,55 @@ public class ApplicationService {
         return applicationRepository.save(app);
     }
 
+    // ============ SEEKER: LIST / COUNT ============
     public List<Application> findBySeeker(User seeker) {
         JobSeekerProfile profile = profileService.findByUser(seeker);
-        return applicationRepository.findByJobSeekerProfile(profile);
+        return applicationRepository.findBySeekerWithDetails(profile);
     }
 
-    public List<Application> findRecentBySeeker(User seeker, int limit) {
+    public List<Application> findTop5BySeeker(User seeker) {
         JobSeekerProfile profile = profileService.findByUser(seeker);
-        return applicationRepository.findTop5ByJobSeekerProfileOrderByAppliedAtDesc(profile);
+        return applicationRepository.findRecentBySeekerWithDetails(
+                profile, PageRequest.of(0, 5));
     }
 
+    public long countBySeeker(User seeker, ApplicationStatus status) {
+        JobSeekerProfile profile = profileService.findByUser(seeker);
+        return applicationRepository.countByJobSeekerProfileAndStatus(profile, status);
+    }
+
+    // ============ EMPLOYER: LIST / COUNT ============
     public List<Application> findByJob(Job job) {
-        return applicationRepository.findByJob(job);
+        return applicationRepository.findByJobWithDetails(job);
     }
 
     public List<Application> findByCompanyId(Long companyId) {
-        return applicationRepository.findByJobCompanyId(companyId);
+        return applicationRepository.findByCompanyWithDetails(companyId);
     }
 
     public List<Application> findRecentByCompanyId(Long companyId) {
-        return applicationRepository.findTop5ByJobCompanyIdOrderByAppliedAtDesc(companyId);
-    }
-
-    public long countBySeekerAndStatus(User seeker, ApplicationStatus status) {
-        JobSeekerProfile profile = profileService.findByUser(seeker);
-        return applicationRepository.countByJobSeekerProfileAndStatus(profile, status);
+        return applicationRepository.findRecentByCompanyWithDetails(
+                companyId, PageRequest.of(0, 5));
     }
 
     public long countByCompanyAndStatus(Long companyId, ApplicationStatus status) {
         return applicationRepository.countByJobCompanyIdAndStatus(companyId, status);
     }
 
+    // ============ SHARED ============
     public Application findById(Long id) {
         return applicationRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Application not found: " + id));
     }
+    
+    public long countAll() {
+        return applicationRepository.count();
+    }
 
-    /**
-     * Employer updates application status. Ownership enforced.
-     */
+    public List<Application> findAll() {
+        return applicationRepository.findAllWithDetails();
+    }
+
     @Transactional
     public Application updateStatus(Long applicationId, ApplicationStatus newStatus, User employer) {
         Application app = findById(applicationId);
@@ -112,6 +122,6 @@ public class ApplicationService {
         }
 
         app.setStatus(newStatus);
-        return app;  // dirty checking saves
+        return app;
     }
 }

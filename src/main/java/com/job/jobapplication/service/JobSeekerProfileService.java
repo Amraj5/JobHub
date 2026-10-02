@@ -9,6 +9,8 @@ import com.job.jobapplication.model.JobSeekerProfile;
 import com.job.jobapplication.model.Skill;
 import com.job.jobapplication.model.User;
 import com.job.jobapplication.repository.JobSeekerProfileRepository;
+import com.job.jobapplication.model.Education;
+import com.job.jobapplication.repository.EducationRepository;
 import com.job.jobapplication.repository.SkillRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,9 +46,12 @@ public class JobSeekerProfileService {
     }
 
     public JobSeekerProfile findByUser(User user) {
-        return profileRepository.findByUser(user)
+        JobSeekerProfile profile = profileRepository.findByUser(user)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "No profile for user: " + user.getEmail()));
+        profile.getSkills().size();
+        profile.getEducation().size();
+        return profile;
     }
 
     public JobSeekerProfile findById(Long id) {
@@ -90,4 +95,5 @@ public class JobSeekerProfileService {
     public List<Skill> getAllSkills() {
         return skillRepository.findAll();
     }
+    
 }

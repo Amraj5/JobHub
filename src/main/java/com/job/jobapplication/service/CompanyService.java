@@ -32,7 +32,10 @@ public class CompanyService {
         return companyRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Company not found: " + id));
     }
-
+    
+    public List<Company> findAll() {
+        return companyRepository.findAllWithOwner();
+    }
     public Company findByOwner(User owner) {
         return companyRepository.findByOwner(owner)
                 .orElseThrow(() -> new ResourceNotFoundException(
@@ -43,9 +46,6 @@ public class CompanyService {
         return companyRepository.findByOwner(owner).orElse(null);
     }
 
-    public List<Company> findAll() {
-        return companyRepository.findAll();
-    }
 
     /**
      * Employer creates their company profile. One per user.

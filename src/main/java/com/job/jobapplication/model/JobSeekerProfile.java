@@ -55,6 +55,17 @@ public class JobSeekerProfile {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "job_seeker_profile_skills", joinColumns = @JoinColumn(name = "profile_id"), inverseJoinColumns = @JoinColumn(name = "skill_id") )
     private Set<Skill> skills = new HashSet<>();
+    
+    @OneToMany(mappedBy = "jobSeekerProfile", fetch = FetchType.LAZY)
+    private List<Education> education = new ArrayList<>();
+
+    public List<Education> getEducation() {
+        return education;
+    }
+
+    public void setEducation(List<Education> education) {
+        this.education = education;
+    }
 
     public Set<Skill> getSkills() {
         return skills;

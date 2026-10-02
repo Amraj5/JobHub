@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('My Applications - JobHub')}"></head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar('seeker')}"></div>
+
+<main class="container my-5">
+
+    <div th:replace="~{fragments/messages :: messages}"></div>
+
+    <h1 class="mb-4">My Applications</h1>
+
+    <div th:if="${applications.isEmpty()}" class="alert alert-info">
+        You haven't applied to any jobs yet. <a th:href="@{/jobs}">Browse jobs</a>
+    </div>
+
+    <div class="card" th:unless="${applications.isEmpty()}">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                <tr>
+                    <th>Job</th>
+                    <th>Company</th>
+                    <th>Applied On</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="app : ${applications}">
+                    <td class="fw-semibold" th:text="${app.job.title}">Job</td>
+                    <td th:text="${app.job.company.name}">Company</td>
+                    <td th:text="${#temporals.format(app.appliedAt, 'MMM d, yyyy')}">Date</td>
+                    <td>
+                        <span class="badge"
+                              th:classappend="${'bg-' + (app.status.name() == 'PENDING' ? 'warning text-dark'
+                                              : app.status.name() == 'REVIEWING' ? 'info text-dark'
+                                              : app.status.name() == 'SHORTLISTED' ? 'primary'
+                                              : app.status.name() == 'INTERVIEW' ? 'purple'
+                                              : app.status.name() == 'ACCEPTED' ? 'success'
+                                              : 'danger')}"
+                              th:text="${app.status}">PENDING</span>
+                    </td>
+                    <td class="text-end">
+                        <a th:href="@{/jobs/{id}(id=${app.job.id})}" class="btn btn-sm btn-outline-primary">
+                            View Job
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

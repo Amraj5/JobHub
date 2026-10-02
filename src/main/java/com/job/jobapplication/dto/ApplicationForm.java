@@ -10,7 +10,6 @@ import jakarta.validation.constraints.Size;
  * @author ADAMS
  */
 public class ApplicationForm {
-    @NotBlank(message = "CV is required to apply")
     @Size(max = 300)
     private String cvUrl;
 

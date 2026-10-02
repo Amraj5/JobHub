@@ -37,119 +37,109 @@
             <h2 class="text-center mb-4">Popular Categories</h2>
             <div class="row g-3">
                 <div class="col-6 col-md-4 col-lg-2">
-                    <div class="card category-card text-center h-100">
-                        <div class="card-body">
-                            <i class="bi bi-code-slash fs-1 text-brand"></i>
-                            <p class="mt-2 mb-0 fw-semibold">Technology</p>
+                    <a th:href="@{/jobs(category='TECHNOLOGY')}" class="text-decoration-none">
+                        <div class="card category-card text-center h-100">
+                            <div class="card-body">
+                                <i class="bi bi-code-slash fs-1 text-brand"></i>
+                                <p class="mt-2 mb-0 fw-semibold text-dark">Technology</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
-                    <div class="card category-card text-center h-100">
-                        <div class="card-body">
-                            <i class="bi bi-gear fs-1 text-brand"></i>
-                            <p class="mt-2 mb-0 fw-semibold">Engineering</p>
+                    <a th:href="@{/jobs(category='ENGINEERING')}" class="text-decoration-none">
+                        <div class="card category-card text-center h-100">
+                            <div class="card-body">
+                                <i class="bi bi-gear fs-1 text-brand"></i>
+                                <p class="mt-2 mb-0 fw-semibold text-dark">Engineering</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
-                    <div class="card category-card text-center h-100">
-                        <div class="card-body">
-                            <i class="bi bi-cash-coin fs-1 text-brand"></i>
-                            <p class="mt-2 mb-0 fw-semibold">Finance</p>
+                    <a th:href="@{/jobs(category='FINANCE')}" class="text-decoration-none">
+                        <div class="card category-card text-center h-100">
+                            <div class="card-body">
+                                <i class="bi bi-cash-coin fs-1 text-brand"></i>
+                                <p class="mt-2 mb-0 fw-semibold text-dark">Finance</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
-                    <div class="card category-card text-center h-100">
-                        <div class="card-body">
-                            <i class="bi bi-megaphone fs-1 text-brand"></i>
-                            <p class="mt-2 mb-0 fw-semibold">Marketing</p>
+                    <a th:href="@{/jobs(category='MARKETING')}" class="text-decoration-none">
+                        <div class="card category-card text-center h-100">
+                            <div class="card-body">
+                                <i class="bi bi-megaphone fs-1 text-brand"></i>
+                                <p class="mt-2 mb-0 fw-semibold text-dark">Marketing</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
-                    <div class="card category-card text-center h-100">
-                        <div class="card-body">
-                            <i class="bi bi-heart-pulse fs-1 text-brand"></i>
-                            <p class="mt-2 mb-0 fw-semibold">Healthcare</p>
+                    <a th:href="@{/jobs(category='HEALTHCARE')}" class="text-decoration-none">
+                        <div class="card category-card text-center h-100">
+                            <div class="card-body">
+                                <i class="bi bi-heart-pulse fs-1 text-brand"></i>
+                                <p class="mt-2 mb-0 fw-semibold text-dark">Healthcare</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
-                    <div class="card category-card text-center h-100">
-                        <div class="card-body">
-                            <i class="bi bi-mortarboard fs-1 text-brand"></i>
-                            <p class="mt-2 mb-0 fw-semibold">Education</p>
+                    <a th:href="@{/jobs(category='EDUCATION')}" class="text-decoration-none">
+                        <div class="card category-card text-center h-100">
+                            <div class="card-body">
+                                <i class="bi bi-mortarboard fs-1 text-brand"></i>
+                                <p class="mt-2 mb-0 fw-semibold text-dark">Education</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-                <!-- Repeat for Engineering, Finance, Marketing, Healthcare, Education -->
             </div>
         </div>
     </section>
     <section class="py-5 bg-white">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="mb-0">Featured Jobs</h2>
+                <h2 class="mb-0">
+                    Featured Jobs
+                    <span class="text-muted fs-6 fw-normal">
+                        (<span th:text="${totalJobs}">0</span> active)
+                    </span>
+                </h2>
                 <a th:href="@{/jobs}" class="btn btn-outline-primary">View All Jobs</a>
             </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
+           <div class="row g-4">
+                <div class="col-md-6 col-lg-4" th:each="job : ${featuredJobs}">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Senior Java Developer</h5>
+                            <h5 class="card-title" th:text="${job.title}">Job Title</h5>
                             <p class="text-muted mb-2">
-                                <i class="bi bi-building me-1"></i> TechCorp Ltd
+                                <i class="bi bi-building me-1"></i>
+                                <span th:text="${job.company.name}">Company</span>
                             </p>
                             <p class="text-muted mb-2">
-                                <i class="bi bi-geo-alt me-1"></i> Lagos, Nigeria
+                                <i class="bi bi-geo-alt me-1"></i>
+                                <span th:text="${job.location}">Location</span>
                             </p>
-                            <span class="badge bg-primary">Full Time</span>
-                            <span class="badge bg-success">$80k - $120k</span>
+                            <span class="badge bg-primary" th:text="${job.employmentType}">Type</span>
+                            <span class="badge bg-secondary ms-1" th:text="${job.experienceLevel}">Level</span>
+                            <p class="fw-bold text-success mt-3 mb-0" th:if="${job.salaryMin != null}">
+                                <span th:text="${job.currency}">NGN</span>
+                                <span th:text="${#numbers.formatInteger(job.salaryMin, 3, 'COMMA')}">0</span>
+                                <span th:if="${job.salaryMax != null}"> - </span>
+                                <span th:if="${job.salaryMax != null}"
+                                      th:text="${#numbers.formatInteger(job.salaryMax, 3, 'COMMA')}">0</span>
+                            </p>
                         </div>
                         <div class="card-footer bg-transparent border-top-0">
-                            <a href="#" class="btn btn-outline-primary w-100">View Job</a>
+                            <a th:href="@{/jobs/{id}(id=${job.id})}" class="btn btn-outline-primary w-100">
+                                View Job
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Frontend Engineer</h5>
-                            <p class="text-muted mb-2">
-                                <i class="bi bi-building me-1"></i>DesignStudio
-                            </p>
-                            <p class="text-muted mb-2">
-                                <i class="bi bi-geo-alt me-1"></i> Remote
-                            </p>
-                            <span class="badge bg-primary">Full Time</span>
-                            <span class="badge bg-success">$60k - $90k</span>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <a href="#" class="btn btn-outline-primary w-100">View Job</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Data Analyst</h5>
-                            <p class="text-muted mb-2">
-                                <i class="bi bi-building me-1"></i>FinBank
-                            </p>
-                            <p class="text-muted mb-2">
-                                <i class="bi bi-geo-alt me-1"></i>Abuja, Nigeria
-                            </p>
-                            <span class="badge bg-primary">Contract</span>
-                            <span class="badge bg-success"> $50k - $70k</span>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <a href="#" class="btn btn-outline-primary w-100">View Job</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Repeat 2–5 more job cards -->
             </div>
         </div>
     </section>
